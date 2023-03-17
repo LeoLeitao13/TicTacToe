@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* reset css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, #00CC99 0%, #6600FF 100%);
+}
+
+.board{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+
+/* Hover Transparente */
+.board.x .celulas:not(.x):not(.circulo):hover::after,
+.board.x .celulas:not(.x):not(.circulo):hover::before,
+.board.circulo .celulas:not(.x):not(.circulo):hover::after,
+.board.circulo .celulas:not(.x):not(.circulo):hover::before{
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.celulas{
+    width: 100px;
+    height: 100px;
+    border: 2.5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.celulas.x,
+.celulas.circulo{
+    cursor: not-allowed;
+}
+
+.celulas:nth-child(1),
+.celulas:nth-child(2),
+.celulas:nth-child(3) {
+    border-top: none;
+}
+
+.celulas:nth-child(7),
+.celulas:nth-child(8),
+.celulas:nth-child(9) {
+    border-bottom: none;
+}
+
+.celulas:nth-child(3),
+.celulas:nth-child(6),
+.celulas:nth-child(9) {
+    border-right: none;
+}
+
+.celulas:nth-child(7),
+.celulas:nth-child(1),
+.celulas:nth-child(4) {
+    border-left: none;
+}
+
+/* X */
+.celulas.x::before,
+.celulas.x::after,
+.board.x .celulas:not(.x):not(.circulo):hover::after,
+.board.x .celulas:not(.x):not(.circulo):hover::before {
+    content: "";
+    height: calc(100px * 0.13);
+    width: calc(100px * 0.9);
+    background: white;
+    position: absolute;
+}
+.celulas.x::before,
+.board.x .celulas:not(.x):not(.circulo):hover::before {
+    transform: rotate(45deg);
+}
+.celulas.x::after,
+.board.x .celulas:not(.x):not(.circulo):hover::after {
+    transform: rotate(-45deg);
+}
+/* Circulo */
+.celulas.circulo::before,
+.celulas.circulo::after,
+.board.circulo .celulas:not(.x):not(.circulo):hover::after,
+.board.circulo .celulas:not(.x):not(.circulo):hover::before {
+    content: "";
+    height: calc(100px * 0.85);
+    width: calc(100px * 0.85);
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.mensagem-vitoria{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+}
+
+.mensagem-vitoria-botao{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    background-color: #6600FF;
+    padding: 13px 20px;
+    margin-top: 0.3em;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    align-items: center;
+}
+
+.mensagem-vitoria-botao:hover{
+    color: #6600FF;
+    background-color: white;
+}
+
+.mensagem-vitoria-texto{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: 4rem;
+}
+
+.show-winning-message{
+    display: flex;
+}
